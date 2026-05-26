@@ -1,0 +1,207 @@
+Markdown
+# 🚀 Mémo Ultime Survie - Examen C#
+
+## 🖥️ 1. LE TERMINAL (Git Bash) : Centre de Commandes
+*Ne tape JAMAIS de code C# ici. Uniquement ces commandes.*
+
+**A. Séquence de démarrage (Au tout début de l'épreuve) :**
+```bash
+mkdir DS_Examen
+cd DS_Examen
+dotnet new sln -n Examen
+dotnet new console -n App
+dotnet new mstest -n Tests
+dotnet sln add App/App.csproj
+dotnet sln add Tests/Tests.csproj
+dotnet add Tests/Tests.csproj reference App/App.csproj
+git init
+B. La Boucle de travail (À faire à chaque question) :
+
+Bash
+# 1. Tester le code (Après avoir fait Ctrl+S dans Notepad++)
+dotnet test
+
+# 2. Sauvegarder la question si le test est vert
+git add .
+git commit -m "Question X terminée"
+🦴 2. LE SQUELETTE OBLIGATOIRE (Notepad++)
+À coller immédiatement dans App/Program.cs pour éviter l'erreur CS5001.
+
+C#
+using System;
+using System.Collections.Generic;
+
+namespace App
+{
+    // ---> TES CLASSES ET FONCTIONS IRONT ICI <---
+
+    public class Program
+    {
+        public static void Main(string[] args) { }
+    }
+}
+🎯 3. LES 4 ASSERTS DE TESTS
+À utiliser dans Tests/UnitTest1.cs pour vérifier ton code.
+
+C#
+// 1. Vérifier un calcul ou une valeur exacte
+Assert.AreEqual(valeurAttendue, valeurObtenue);
+
+// 2. Vérifier qu'une condition est VRAIE
+Assert.IsTrue(maCondition);
+
+// 3. Vérifier qu'une condition est FAUSSE
+Assert.IsFalse(maCondition);
+
+// 4. Vérifier qu'une erreur est bien déclenchée
+Assert.ThrowsException<ArgumentException>(() => monObjet.ActionInterdite());
+📦 4. LES 6 SITUATIONS CLASSIQUES (À copier et adapter)
+SITUATION 1 : Créer un Objet (La Classe)
+Sujet : "Modéliser une Voiture", "Créer un Livre"...
+
+C#
+public class Personne
+{
+    public string Nom { get; set; }
+    public int Age { get; set; }
+
+    // Le Constructeur
+    public Personne(string nom, int age)
+    {
+        Nom = nom;
+        Age = age;
+    }
+}
+SITUATION 2 : Bloquer une erreur (L'Exception)
+Sujet : "Interdire un âge négatif", "Fonds insuffisants"...
+
+C#
+public void Retirer(int montant)
+{
+    if (montant < 0)
+    {
+        // L'alarme se déclenche ici
+        throw new ArgumentException("Le montant ne peut pas être négatif !");
+    }
+    // Sinon, la suite du code s'exécute...
+}
+SITUATION 3 : Le Calcul Brut (Mathématiques)
+Sujet : "Calculer l'aire", "Convertir des minutes"...
+
+C#
+public int Calculer(int a, int b)
+{
+    int resultat = a + b;
+    return resultat;
+}
+SITUATION 4 : La Boucle (Calcul répétitif)
+Sujet : "Évolution sur 10 ans", "Somme d'un tableau"...
+
+C#
+public int SommeTableau(int[] nombres)
+{
+    int somme = 0;
+    for (int i = 0; i < nombres.Length; i++)
+    {
+        somme = somme + nombres[i];
+    }
+    return somme;
+}
+SITUATION 5 : Gérer une Liste (Collection dynamique)
+Sujet : "Gérer un panier", "Ajouter à l'inventaire"...
+
+C#
+public class Boutique
+{
+    public List<string> Inventaire { get; set; }
+
+    public Boutique()
+    {
+        Inventaire = new List<string>(); // Toujours initialiser !
+    }
+
+    public void Ajouter(string produit)
+    {
+        Inventaire.Add(produit);
+    }
+
+    public bool EstDisponible(string produit)
+    {
+        return Inventaire.Contains(produit); // Renvoie Vrai ou Faux
+    }
+}
+SITUATION 6 : L'Aléatoire (Random)
+Sujet : "Tirer au sort", "Choisir un mot au hasard"...
+
+C#
+public string TirageAuSort()
+{
+    string[] mots = { "Pomme", "Poire", "Banane" };
+    Random hasard = new Random();
+   
+    int index = hasard.Next(0, mots.Length);
+    return mots[index];
+}
+⚠️ 5. LES 2 PIÈGES À ÉVITER
+Piège 1 : Le mot static
+
+Si tu crées une fonction DANS une Classe (Voiture, Compte) ➔ PAS de static.
+
+Si on te demande une fonction toute seule dans Program ➔ OBLIGATOIRE de mettre static.
+
+Piège 2 : Les astuces pour le texte (string)
+
+C#
+string mot = "Bonjour";
+int taille = mot.Length; // Nombre de lettres
+string minuscule = mot.ToLower(); // Tout en minuscules
+if (string.IsNullOrEmpty(mot)) { throw new ArgumentException("Vide !"); }
+
+
+Markdown# 🛠️ Antisèche Complète - Examen C#
+
+## 💾 1. VERSIONNER ET SAUVEGARDER (Les commandes Git)
+*À faire dans le terminal Git Bash uniquement.*
+
+**A. Au tout début (Lancement du suivi) :**
+```bash
+git init
+B. À chaque fin de question (La sauvegarde) :Bashgit add .
+git commit -m "Question X terminée"
+C. À la toute fin de l'examen (Dernière sauvegarde) :Bashgit add .
+git commit -m "Fin de l'examen"
+(Ensuite, zipper le dossier ou faire le git push selon la consigne).🦴 2. LES SQUELETTES TOUT FAITSA. Le squelette de l'application (App/Program.cs)C#using System;
+using System.Collections.Generic;
+
+namespace App
+{
+    // ---> COLLE TES CLASSES ICI <---
+
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            // Reste vide
+        }
+    }
+}
+B. Le squelette des tests (Tests/UnitTest1.cs)C#using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using App; // OBLIGATOIRE pour lier les deux dossiers
+
+namespace Tests
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void TestExemple()
+        {
+            // ---> COLLE TES ASSERTS ICI <---
+        }
+    }
+}
+🗺️ 3. LA CARTE DES TD (Où copier quoi ?)Si tu bloques sur une logique, ouvre le fichier du TD corrigé correspondant :La Notion demandée par le sujetLe TD corrigé à ouvrirL'Exercice exact à regarderCréer une CLASSE (Objet avec des Propriétés)TD8Exercice 2 (La classe Personne : Constructeur + get; set;)Gérer une EXCEPTION (Bloquer une erreur/valeur interdite)TD9Exercice 4 (L'aire de l'Octogone : Le if avec le throw new ArgumentException)Faire un CALCUL MATHEMATIQUE (Avec un résultat à retourner)TD2 ou TD4TD2 Exercice 2 (ConvertHMToMinutes : La méthode pure avec le return)Faire une BOUCLE (Répéter une action, faire évoluer un nombre)TD1Exercice 3 (Le Brouzouf de Suzon : La boucle for sur le solde)Gérer des TABLEAUX et de L'ALÉATOIRE (Tirer au sort)TD5Début du TD (RetournerAnimal / RetournerAdjectif : Le tableau + le Random)🎯 4. LE RAPPEL DES TESTS (Asserts)C#Assert.AreEqual(attendu, obtenu); // Vérifie un calcul
+Assert.IsTrue(condition);         // Vérifie un Vrai
+Assert.IsFalse(condition);        // Vérifie un Faux
+Assert.ThrowsException<ArgumentException>(() => action()); // Vérifie que l'erreur se déclenche bien
